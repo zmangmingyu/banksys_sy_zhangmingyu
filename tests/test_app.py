@@ -42,3 +42,11 @@ def test_predictor_importable():
 
     assert callable(predict_single)
     assert callable(predict_batch)
+
+
+def test_analysis_page_importable():
+    """分析页面模块应可导入(Streamlit UI 代码,不测试渲染)."""
+    import importlib
+
+    mod = importlib.import_module("src.pages.1_\U0001f4ca_analysis")
+    assert mod is not None
