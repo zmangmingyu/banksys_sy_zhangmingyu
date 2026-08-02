@@ -104,6 +104,6 @@ banksys_sy_zhangmingyu/
 | `<DEPLOY_DIR>` | `/opt/banksys` | 服务器部署目录 |
 | `<PORT>` | `8888` | 服务端口 |
 | `<PYVER>` | `3.11` | Python 版本 |
-| `<HEALTHCHECK>` | `/healthz` | 健康检查地址 |
+| `<HEALTHCHECK>` | `/_stcore/health` | 健康检查地址(Streamlit 内置) |
 | `<SSH_USER>` | `<deploy 用户,由学生配置>` | 部署用户 |
 | `<SSH_HOST>` | `<服务器 IP 或域名,由学生配置>` | 服务器地址 |

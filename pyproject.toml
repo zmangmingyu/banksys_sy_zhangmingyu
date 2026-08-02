@@ -1,0 +1,8 @@
+[tool.ruff]
+
+[tool.ruff.lint]
+# Streamlit 多页应用文件名惯例含 emoji(to show sidebar icons),忽略命名规则
+per-file-ignores = { "src/pages/*.py" = ["N999"] }
+
+[tool.ruff.format]
+line-ending = "auto"
