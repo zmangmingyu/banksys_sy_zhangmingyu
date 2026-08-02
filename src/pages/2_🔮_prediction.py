@@ -1,5 +1,11 @@
 """在线预测交互页面 — 客户认购意向预测."""
 
+import sys
+from pathlib import Path
+
+# 确保项目根目录在 Python 路径中
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
+
 import streamlit as st
 
 from src.predictor import predict_single
