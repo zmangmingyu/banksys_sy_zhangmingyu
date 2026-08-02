@@ -1,0 +1,41 @@
+# 数据与模型产物(不进 Git)
+data/
+models/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+
+# 虚拟环境
+.venv/
+venv/
+env/
+envproj/
+
+# IDE / 编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 测试 & 覆盖率
+.pytest_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# 操作系统
+.DS_Store
+Thumbs.db
+
+# 环境变量(密钥不进 Git)
+.env
+.env.local
+
+# Streamlit
+.streamlit/secrets.toml
