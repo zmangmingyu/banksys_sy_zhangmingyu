@@ -23,6 +23,9 @@ RUN mkdir -p ./models
 COPY src/ ./src/
 COPY data/ ./data/
 
+# 离线训练模型(构建时完成,镜像自包含)
+RUN python -c "from src.model_trainer import run_full_training; run_full_training()"
+
 EXPOSE 8888
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
