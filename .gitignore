@@ -1,6 +1,6 @@
-# 数据与模型产物(不进 Git)
-data/
+# 模型产物(不进 Git)
 models/
+# 数据:公开教学数据可入库(05-cicd-standards.md 明确允许)
 
 # Python
 __pycache__/
