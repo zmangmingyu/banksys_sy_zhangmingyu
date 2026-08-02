@@ -8,8 +8,13 @@
 
 ## 1. 当前状态
 
-- **六步流程位置**:第 0 步(准备阶段) — 已完成上下文文档与需求编写,等待人工确认后进入第①步(建仓)。
+- **六步流程位置**:第①步(建仓 + 配 Secrets) — 仓库已创建并推送,等待人工配置 GitHub Secrets。
 - **最后更新**:2026-08-02
+
+### 已完成
+- ✅ 仓库创建:https://github.com/zmangmingyu/banksys_sy_zhangmingyu
+- ✅ 初始提交 `chore: init project skeleton with standards and .gitignore` 已推送到 `main`
+- ✅ `standards/00-project-context.md`、`01-requirements.md`、`PROGRESS.md` 已填写
 
 ---
 
