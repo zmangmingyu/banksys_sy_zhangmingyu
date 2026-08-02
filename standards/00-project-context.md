@@ -17,7 +17,7 @@
   - 来源:`data/train.csv`(训练集,22,500 条)、`data/test.csv`(测试集,7,500 条)。
   - 数据类型:银行营销活动记录,含客户人口统计、财务指标、联络信息、经济背景共 21 列(含目标列 `subscribe`)。
   - 敏感程度:公开教学数据集(UCI Bank Marketing 衍生),无个人隐私。
-  - 是否进 Git:数据不进 Git(通过 `.gitignore` 排除);模型产物不进 Git;代码与配置进 Git。
+  - 是否进 Git:数据为公开 UCI 教学数据,进 Git;模型产物不进 Git;代码与配置进 Git。
 
 ## 2. 技术栈
 
@@ -104,6 +104,6 @@ banksys_sy_zhangmingyu/
 | `<DEPLOY_DIR>` | `/opt/banksys` | 服务器部署目录 |
 | `<PORT>` | `8888` | 服务端口 |
 | `<PYVER>` | `3.11` | Python 版本 |
-| `<HEALTHCHECK>` | `/healthz` | 健康检查地址 |
+| `<HEALTHCHECK>` | `/_stcore/health` | 健康检查地址(Streamlit 内置) |
 | `<SSH_USER>` | `<deploy 用户,由学生配置>` | 部署用户 |
 | `<SSH_HOST>` | `<服务器 IP 或域名,由学生配置>` | 服务器地址 |
