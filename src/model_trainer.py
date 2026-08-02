@@ -184,33 +184,27 @@ def run_full_training(train_csv: str = "train.csv", test_csv: str = "test.csv") 
         train_df, test_size=0.2, random_state=RANDOM_SEED, stratify=train_df[TARGET_COL]
     )
 
-    exclude = [c for c in EXCLUDE_COLS if c in train_df.columns]
-    X_train, y_train = prepare_features(train_df, exclude_cols=exclude)
-    X_val, y_val = prepare_features(val_df, exclude_cols=exclude)
+    # ---- 对比: 含 duration vs 不含 duration ----
+    for use_duration, label in [(False, "不含 duration"), (True, "含 duration")]:
+        drop_cols = ["id"] if use_duration else EXCLUDE_COLS
+        exclude = [c for c in drop_cols if c in train_df.columns]
+        X_tr, y_tr = prepare_features(train_df, exclude_cols=exclude)
+        X_va, y_va = prepare_features(val_df, exclude_cols=exclude)
 
-    numeric_cols = X_train.select_dtypes(include=["int64", "float64"]).columns.tolist()
-    categorical_cols = X_train.select_dtypes(
-        include=["object", "category"]
-    ).columns.tolist()
+        num_cols = X_tr.select_dtypes(include=["int64", "float64"]).columns.tolist()
+        cat_cols = X_tr.select_dtypes(include=["object", "category"]).columns.tolist()
 
-    logger.info("数值列: %s", numeric_cols)
-    logger.info("类别列: %s", categorical_cols)
+        pipe = build_pipeline(num_cols, cat_cols)
+        pipe = train_model(pipe, X_tr, y_tr)
+        m = evaluate_model(pipe, X_va, y_va)
+        logger.info("模型评估(%s): %s", label, m)
 
-    pipeline = build_pipeline(numeric_cols, categorical_cols)
-    pipeline = train_model(pipeline, X_train, y_train)
-
-    metrics = evaluate_model(pipeline, X_val, y_val)
-    logger.info("模型评估结果(验证集): %s", metrics)
-
-    # 检查 test.csv 是否有目标列(用于额外验证)
-    test_df = load_data(test_csv)
-    if "subscribe" in test_df.columns:
-        X_test, y_test = prepare_features(test_df, exclude_cols=exclude)
-        test_metrics = evaluate_model(pipeline, X_test, y_test)
-        logger.info("模型评估结果(测试集): %s", test_metrics)
-        metrics["test_auc"] = test_metrics["auc"]
-    else:
-        logger.info("test.csv 不含目标列,跳过测试集评估")
+        # 保存不含 duration 的模型作为默认模型
+        if not use_duration:
+            numeric_cols = num_cols
+            categorical_cols = cat_cols
+            pipeline = pipe
+            metrics = m
 
     model_path = save_model(pipeline)
 
