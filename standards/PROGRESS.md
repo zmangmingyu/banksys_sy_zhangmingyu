@@ -8,20 +8,16 @@
 
 ## 1. 当前状态
 
-- **六步流程位置**:第④步(本地 CI 自检) — 全部通过,准备进入第⑤步(发起 PR)。
-- **分支**:`feature/1-project-init`
+- **六步流程位置**:第⑥步(CD 部署) — US-1 全部完成 ✅
+- **分支**:已合并 main
 - **最后更新**:2026-08-02
 
 ### 已完成
-- ✅ 仓库创建 + Secrets 配置
-- ✅ 分支 `feature/1-project-init` 已创建
-- ✅ 项目骨架完成:requirements.txt, requirements-dev.txt, Dockerfile, .dockerignore, .github/workflows/{ci,cd}.yml
-- ✅ 源码模块完成:src/app.py, src/data_loader.py, src/model_trainer.py, src/predictor.py, src/utils.py
-- ✅ Streamlit 页面占位:pages/1_📊_analysis.py, pages/2_🔮_prediction.py
-- ✅ 测试完成:23 tests,覆盖率 88%
-- ✅ ruff format + ruff check 全绿
-- ✅ pytest 全绿(23 passed)
-- ⬜ 发起 PR → CI 云端验证 → 人工合并 → CD 部署
+- ✅ **US-1 完整 CI/CD 管线跑通**
+- ✅ PR #1: 项目工程骨架(CI 全绿,CD 初版有 bug)
+- ✅ PR #2: 修复 CD 数据排除问题(CI + CD 全绿)
+- ✅ CD 部署成功:服务器端口 8890(8888→8890 端口自愈),健康检查 ok
+- ✅ 待续:US-2 数据分析页
 
 ---
 
