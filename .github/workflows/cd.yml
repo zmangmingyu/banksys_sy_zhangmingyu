@@ -22,7 +22,7 @@ jobs:
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
           REMOTE_USER: ${{ secrets.SSH_USER }}
           TARGET: /opt/banksys
-          EXCLUDE: ".git, __pycache__, .pytest_cache, .vscode, .idea, models, data"
+          EXCLUDE: ".git, __pycache__, .pytest_cache, .vscode, .idea, models"
 
       - name: Build and deploy
         uses: appleboy/ssh-action@v1.2.2
