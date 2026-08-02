@@ -15,6 +15,10 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
+# 安装 curl(健康检查需要)
+RUN apt-get update && apt-get install -y --no-install-recommends curl && \
+    rm -rf /var/lib/apt/lists/*
+
 # 从构建阶段复制已安装的 site-packages
 COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
 COPY --from=builder /usr/local/bin /usr/local/bin
