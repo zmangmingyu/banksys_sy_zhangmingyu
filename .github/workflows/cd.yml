@@ -42,8 +42,14 @@ jobs:
               --build-arg PIP_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple \
               -t ${APP}:latest .
 
-            # 幂等替换旧容器(固定端口 8888)
+            # 释放端口 8888(停止自身旧容器 + 占用 8888 的其他容器)
             docker rm -f ${APP} 2>/dev/null || true
+            OCCUPIER=$(docker ps -q --filter "publish=8888" 2>/dev/null)
+            if [ -n "${OCCUPIER}" ]; then
+              echo ">> 端口 8888 被容器 ${OCCUPIER} 占用,强制停止"
+              docker rm -f "${OCCUPIER}"
+            fi
+
             docker run -d \
               --name ${APP} \
               --restart unless-stopped \
